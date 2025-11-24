@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Goodies Wheel</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts for a modern look -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- VUE 1 : ACCUEIL -->
+        <div id="view-home" class="view active">
+            <h1 class="cyber-title">CYBER QUIZ</h1>
+            <p class="subtitle">Répondez juste, tournez la roue, gagnez des goodies !</p>
+            
+            <div class="difficulty-buttons">
+                <button class="btn btn-large btn-neon-blue" onclick="startGame('easy')">
+                    Question Facile
+                </button>
+                <button class="btn btn-large btn-neon-pink" onclick="startGame('hard')">
+                    Question Difficile
+                </button>
+            </div>
+        </div>
+
+        <!-- VUE 2 : QUIZ -->
+        <div id="view-quiz" class="view hidden">
+            <h2 class="section-title">Question <span id="difficulty-label"></span></h2>
+            
+            <div class="question-card">
+                <p id="question-text">Chargement de la question...</p>
+            </div>
+
+            <div class="answers-container" id="answers-container">
+                <!-- Les boutons seront générés par JS -->
+            </div>
+        </div>
+
+        <!-- VUE 3 : ROUE -->
+        <div id="view-wheel" class="view hidden">
+            <h2 class="section-title">Roue des Goodies</h2>
+            <div class="wheel-container">
+                <div class="wheel-pointer">▼</div>
+                <canvas id="wheel-canvas" width="500" height="500"></canvas>
+            </div>
+            
+            <button id="spin-btn" class="btn btn-large btn-neon-green" onclick="spinWheel()">
+                LANCER LA ROUE !
+            </button>
+        </div>
+
+    </div>
+
+    <!-- POPUP RÉSULTAT -->
+    <div id="result-popup" class="popup hidden">
+        <div class="popup-content">
+            <h3>Félicitations !</h3>
+            <p>Vous avez gagné :</p>
+            <div id="prize-display" class="prize-text">...</div>
+            <button class="btn btn-small" onclick="resetGame()">Retour à l'accueil</button>
+        </div>
+    </div>
+
+    <!-- POPUP ÉCHEC -->
+    <div id="fail-popup" class="popup hidden">
+        <div class="popup-content">
+            <h3>Dommage !</h3>
+            <p>Ce n'est pas la bonne réponse.</p>
+            <button class="btn btn-small" onclick="resetGame()">Réessayer</button>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
