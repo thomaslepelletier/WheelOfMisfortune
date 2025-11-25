@@ -48,8 +48,8 @@ body {
 }
 
 .corner-logo {
-    width: 80px;
-    height: 80px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
     filter: drop-shadow(0 0 10px var(--neon-blue));
     animation: pulse 4s infinite ease-in-out;
@@ -244,6 +244,7 @@ body {
 
 .popup-content {
     background: var(--card-bg);
+
     padding: 50px;
     border: 1px solid var(--neon-blue);
     text-align: center;

@@ -69,6 +69,10 @@ function checkAnswer(isCorrect) {
 }
 
 // --- LOGIQUE DE LA ROUE ---
+function adjustColor(color, amount) {
+    return '#' + color.replace(/^#/, '').replace(/../g, color => ('0' + Math.min(255, Math.max(0, parseInt(color, 16) + amount)).toString(16)).substr(-2));
+}
+
 function drawWheel() {
     if (!wheelCanvas.getContext) return;
 
@@ -94,22 +98,46 @@ function drawWheel() {
         ctx.moveTo(centerX, centerY);
         ctx.arc(centerX, centerY, radius, startAngle, startAngle + sliceAngle);
         ctx.closePath();
-        ctx.fillStyle = prize.color;
-        ctx.fill();
-        ctx.stroke(); // Bordure
 
-        // Ajouter du texte (optionnel, peut être compliqué à aligner parfaitement sans trigo)
+        // Créer un dégradé radial pour un effet "design"
+        // Du centre (plus clair) vers l'extérieur (couleur d'origine)
+        const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius);
+        gradient.addColorStop(0, adjustColor(prize.color, 100)); // Centre très lumineux
+        gradient.addColorStop(0.6, prize.color); // Couleur normale
+        gradient.addColorStop(1, adjustColor(prize.color, -40)); // Bord un peu plus sombre
+
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Bordure plus fine et colorée
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+        ctx.stroke();
+
+        // Ajouter du texte
         ctx.save();
         ctx.translate(centerX, centerY);
         ctx.rotate(startAngle + sliceAngle / 2);
         ctx.textAlign = "right";
         ctx.fillStyle = "white";
         ctx.font = "bold 20px Arial";
+        // Ombre portée sur le texte pour lisibilité
+        ctx.shadowColor = "rgba(0,0,0,0.8)";
+        ctx.shadowBlur = 4;
         ctx.fillText(prize.label, radius - 20, 10);
         ctx.restore();
 
         startAngle += sliceAngle;
     });
+
+    // Dessiner un cercle central pour cacher les pointes (optionnel mais joli)
+    ctx.beginPath();
+    ctx.arc(centerX, centerY, 20, 0, 2 * Math.PI);
+    ctx.fillStyle = "#1a1a1a";
+    ctx.fill();
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
+    ctx.stroke();
 }
 
 function spinWheel() {
