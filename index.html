@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cyber Goodies Wheel</title>
     <link rel="stylesheet" href="style.css">
     <!-- Google Fonts for a modern look -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Roboto:wght@300;400;700&display=swap"
+        rel="stylesheet">
 </head>
+
 <body>
 
-    <div class="app-container">
-        
+    <!-- HEADER LOGOS -->
+    <header class="top-header">
+        <img src="cyber_badge.png" alt="Cyber Logo Left" class="corner-logo logo-left">
+        <img src="cyber_badge.png" alt="Cyber Logo Right" class="corner-logo logo-right">
+    </header>
+
+    <div class="app-container glass-panel">
+
         <!-- VUE 1 : ACCUEIL -->
         <div id="view-home" class="view active">
+            <!-- Logo central supprimé car déplacé dans les coins, ou on le garde en plus petit ? Le user a dit "plutot un logo en haut..." donc je l'enlève du centre pour éviter la surcharge -->
             <h1 class="cyber-title">CYBER QUIZ</h1>
             <p class="subtitle">Répondez juste, tournez la roue, gagnez des goodies !</p>
-            
+
             <div class="difficulty-buttons">
                 <button class="btn btn-large btn-neon-blue" onclick="startGame('easy')">
                     Question Facile
@@ -30,7 +41,7 @@
         <!-- VUE 2 : QUIZ -->
         <div id="view-quiz" class="view hidden">
             <h2 class="section-title">Question <span id="difficulty-label"></span></h2>
-            
+
             <div class="question-card">
                 <p id="question-text">Chargement de la question...</p>
             </div>
@@ -47,7 +58,7 @@
                 <div class="wheel-pointer">▼</div>
                 <canvas id="wheel-canvas" width="500" height="500"></canvas>
             </div>
-            
+
             <button id="spin-btn" class="btn btn-large btn-neon-green" onclick="spinWheel()">
                 LANCER LA ROUE !
             </button>
@@ -77,4 +88,5 @@
     <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
+
 </html>

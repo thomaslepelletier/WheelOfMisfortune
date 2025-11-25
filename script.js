@@ -152,7 +152,7 @@ function spinWheel() {
     // RotationFinale = -PI/2 - targetSliceMiddle
 
     // On ajoute plusieurs tours complets (entre 5 et 10 tours)
-    const spins = 5 + Math.random() * 5;
+    const spins = Math.floor(5 + Math.random() * 5);
     const spinAngle = spins * 2 * Math.PI;
 
     // L'angle final absolu qu'on veut atteindre

@@ -38,24 +38,24 @@ const QUESTIONS = {
     ],
     hard: [
         {
-            question: "Qu'est-ce qu'une attaque par 'Man-in-the-Middle' ?",
+            question: "Dans le chiffrement RSA, si n = p * q, que représente φ(n) (l'indicatrice d'Euler) ?",
             answers: [
-                { text: "Interception des communications", correct: true },
-                { text: "Une attaque physique sur le serveur", correct: false }
+                { text: "(p-1)(q-1)", correct: true },
+                { text: "p + q", correct: false }
             ]
         },
         {
-            question: "Que signifie l'acronyme VPN ?",
+            question: "Quelle entête HTTP permet d'atténuer les failles XSS en restreignant les sources de scripts ?",
             answers: [
-                { text: "Virtual Private Network", correct: true },
-                { text: "Very Personal Network", correct: false }
+                { text: "Content-Security-Policy", correct: true },
+                { text: "Access-Control-Allow-Origin", correct: false }
             ]
         },
         {
-            question: "Quel protocole sécurise les échanges sur le web ?",
+            question: "Quel bit de permission permet à un exécutable de tourner avec les droits de son propriétaire ?",
             answers: [
-                { text: "HTTP", correct: false },
-                { text: "HTTPS", correct: true }
+                { text: "Sticky Bit", correct: false },
+                { text: "SUID", correct: true }
             ]
         }
     ]
