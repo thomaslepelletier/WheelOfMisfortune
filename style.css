@@ -39,11 +39,7 @@ body {
     top: 0;
     left: 0;
     width: 100%;
-    padding: 20px;
-    display: flex;
-    justify-content: space-between;
     pointer-events: none;
-    /* Let clicks pass through if needed */
     z-index: 100;
 }
 
@@ -53,10 +49,17 @@ body {
     object-fit: contain;
     filter: drop-shadow(0 0 10px var(--neon-blue));
     animation: pulse 4s infinite ease-in-out;
+    position: absolute;
+    top: 5px;
+}
+
+.logo-left {
+    left: 50px;
 }
 
 .logo-right {
-    animation-delay: 2s;
+    right: 50px;
+    animation-delay: 10s;
 }
 
 /* --- CONTAINER --- */
