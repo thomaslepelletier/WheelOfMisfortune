@@ -57,11 +57,16 @@ function startGame(difficulty) {
     showView('view-quiz');
 }
 
+function goToWheel() {
+    document.getElementById('success-popup').classList.add('hidden');
+    showView('view-wheel');
+    drawWheel();
+}
+
 function checkAnswer(isCorrect) {
     if (isCorrect) {
-        // Bonne réponse -> Roue
-        showView('view-wheel');
-        drawWheel(); // Dessiner la roue
+        // Bonne réponse -> Popup succès
+        document.getElementById('success-popup').classList.remove('hidden');
     } else {
         // Mauvaise réponse -> Popup échec
         document.getElementById('fail-popup').classList.remove('hidden');
