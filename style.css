@@ -47,10 +47,9 @@ body {
     width: 200px;
     height: 200px;
     object-fit: contain;
-    filter: drop-shadow(0 0 10px var(--neon-blue));
     animation: pulse 4s infinite ease-in-out;
     position: absolute;
-    top: 5px;
+    top: 1px;
 }
 
 .logo-left {
