@@ -5,6 +5,7 @@ let wheelCanvas = document.getElementById('wheel-canvas');
 let ctx = wheelCanvas.getContext('2d');
 let isSpinning = false;
 let currentRotation = 0; // Rotation actuelle en radians
+let loadedImages = {}; // Stockage des images préchargées
 
 // --- GESTION DES VUES ---
 function showView(viewId) {
@@ -130,6 +131,28 @@ function drawWheel() {
         ctx.shadowColor = "rgba(0,0,0,0.8)";
         ctx.shadowBlur = 4;
         ctx.fillText(prize.label, radius - 20, 10);
+
+        // Dessiner l'icône si elle est chargée
+        if (prize.icon && loadedImages[prize.icon]) {
+            const img = loadedImages[prize.icon];
+            // Rotation de l'image pour qu'elle soit orientée vers le centre
+            ctx.rotate(Math.PI / 2);
+            // Positionnement : on veut l'image un peu plus vers le centre que le texte
+            // Le texte est à radius - 20. L'image peut être à radius - 80 par exemple.
+            // Attention aux coordonnées après rotation.
+            // Après rotate(Math.PI/2), l'axe X pointe vers le bas (tangentiel), l'axe Y pointe vers la gauche (radial vers l'extérieur ?)
+            // Non, attendez.
+            // Initialement : X vers droite, Y vers bas.
+            // Translate(centerX, centerY).
+            // Rotate(startAngle + sliceAngle / 2). X pointe vers le milieu du segment.
+            // fillText à (radius - 20, 10). X = radius-20 (loin du centre), Y = 10 (un peu décalé).
+
+            // On veut l'image centrée sur l'axe X (radial), un peu plus proche du centre.
+            // Disons à X = radius / 2.
+            const imgSize = 40;
+            ctx.drawImage(img, radius / 2 - imgSize / 2, -imgSize / 2, imgSize, imgSize);
+        }
+
         ctx.restore();
 
         startAngle += sliceAngle;
@@ -250,7 +273,24 @@ function showResult(winner) {
     }, 500);
 }
 
-// Initial draw
+// Initial draw and load images
 window.onload = () => {
+    // Précharger les images
+    let imagesToLoad = 0;
+    PRIZES.forEach(prize => {
+        if (prize.icon) {
+            imagesToLoad++;
+            const img = new Image();
+            img.src = prize.icon;
+            img.onload = () => {
+                loadedImages[prize.icon] = img;
+                drawWheel(); // Redessiner quand une image est prête
+            };
+            img.onerror = () => {
+                console.error("Erreur chargement image:", prize.icon);
+            };
+        }
+    });
+
     drawWheel();
 };

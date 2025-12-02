@@ -66,8 +66,10 @@ const QUESTIONS = {
 // { label: "Nom du lot", color: "Code couleur", probability: Pourcentage (0-100) }
 // IMPORTANT : La somme des probabilités n'a pas besoin de faire 100, le calcul se fera proportionnellement.
 const PRIZES = [
-    { label: "Clé USB 💾", color: "#FF0055", probability: 5 },
-    { label: "Stylo 🖊️", color: "#00CCFF", probability: 30 },
-    { label: "Bloc-notes 📓", color: "#AA00FF", probability: 30 },
-    { label: "Stickers 🏷️", color: "#FFCC00", probability: 35 }
+    { label: "Microfibre", color: "#FF0055", probability: 20, icon: "icon_microfibre.png" },
+    { label: "Autocollant", color: "#00CCFF", probability: 20, icon: "icon_sticker.png" },
+    { label: "Marque-page", color: "#AA00FF", probability: 15, icon: "icon_bookmark.png" },
+    { label: "Carte RFID", color: "#FFCC00", probability: 15, icon: "icon_rfid.png" },
+    { label: "Trou de cou", color: "#00FF66", probability: 15, icon: "icon_lanyard.png" },
+    { label: "Enrouleur", color: "#FF00FF", probability: 15, icon: "icon_reel.svg" }
 ];
